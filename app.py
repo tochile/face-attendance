@@ -24,18 +24,7 @@ def index():
     return render_template("index.html")
 
 
-@app.route('/login',methods=['POST'])
-def login():
-    
-    username = request.form['username']
-    password = request.form['password']
-    cur = mysql.connection.cursor()
-    result = cur.execute("SELECT * from Users where binary username=%s and binary password=%s",[username,password])
-    if(result>0):
-        return render_template("login.html", username=username)
-    else:
-        error = 'failed'
-        return render_template("index.html", error=error)
+
 
 
            
