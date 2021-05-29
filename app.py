@@ -37,51 +37,7 @@ def login():
         error = 'failed'
         return render_template("index.html", error=error)
 
-@app.route('/mark_attendance',methods=['GET', 'POST'])
-def mark_attendance():
-    
-    if request.method == 'POST':
 
-        
-        matno = request.form['matno']
-        course = request.form['course']
-       
-    return render_template("login.html", marked=marked)
-            
-        
-@app.route('/admin')
-def admin():
-    return render_template("admin.html")
-       
-@app.route('/admin_login',methods=['POST'])
-def admin_login():
-    
-        
-        user = request.form['username']
-        pass1 = request.form['pass']
-        cur = mysql.connection.cursor()
-        result = cur.execute("SELECT * from lecturer where binary username=%s and binary password=%s",[user,pass1])
-        if(result>0):
-            
-            return render_template("adm_login.html", user=user)
-        else:
-        
-            error = 'failed'
-            return render_template("admin.html", error=error)
-
-    
-@app.route('/view_attendance',methods=['POST'])
-def view_attendance():
-    
-    cur = mysql.connection.cursor()
-    result1 = cur.execute("SELECT * from attenders")
-    if(result1>0):
-        
-        attendance = cur.fetchall()
-            
-        return render_template("view_attendance.html", attendance=attendance)
-    
-        
            
 
         
